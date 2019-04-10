@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Ionic Storage CRUD
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-item>
+    <ion-label position="fixed">Topic</ion-label>
+    <ion-input [(ngModel)]="newItem.topic"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-label position="fixed">Question</ion-label>
+    <ion-input [(ngModel)]="newItem.question"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="fixed">Answer to question</ion-label>
+    <ion-input [(ngModel)]="newItem.answer"></ion-input>
+  </ion-item> 
+
+  <ion-item>
+    <ion-label position="fixed">Author</ion-label>
+    <ion-input [(ngModel)]="newItem.author"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="addItem()">Add Question details</ion-button>
+ 
+  <ion-list #mylist>
+ 
+    <ion-list-header>
+      <ion-label>Questions REPO</ion-label>
+    </ion-list-header>
+ 
+    <ion-item-sliding *ngFor="let item of items">
+ 
+      <ion-item>
+        <ion-label text-wrap>
+          <h3>{{ item.question }}</h3>
+          <ion-text color="secondary">
+            <p>{{ item.answer }}</p>
+          </ion-text>
+          <p>{{ item.modified | date:'short'}}</p>
+        </ion-label>
+      </ion-item>
+ 
+      <ion-item-options side="end">
+        <ion-item-option color="secondary" (click)="updateItem(item)">Update</ion-item-option>
+        <ion-item-option color="danger" (click)="deleteItem(item)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+ 
+  </ion-list>
+ 
+</ion-content>
